@@ -32,7 +32,7 @@ npm init @eslint/config
 - IntelliJ 사용시 auto fix 설정
 ![img.png](docs/idea_eslint_autofix.png)   
 
-## library 빌드를 위한 vite 설정   
+## vite 번들러를 이용한 라이브러리 빌드        
 > https://vitejs.dev/guide/build.html#library-mode   
 
 1. vite.config.ts 에 build 관련 설정 추가
@@ -74,7 +74,36 @@ export default defineConfig({
 
 ```
 
-## 라이브러리로 제공할 함수 구현   
+2. vite.config.ts 에 따른 entry 파일 생성    
+
+> src/comp/index.ts    
+
+```  
+src
+ L comp
+    L index.ts
+```
+
+3. 라이브러리로 제공할 함수 구현
+
+```  
+src
+ L comp
+    L index.ts
+    L util
+        L calculator.ts
+        L logger.ts
+    L view
+        L SimpleCalculator.tsx
+```
+
+4. js 번들 빌드    
+
+```shell
+yarn build 
+```
+
+> dist/* 빌드된 파일 확인     
 
 
 ## 테스트를 위한 Storybook 모듈 추가     
