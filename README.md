@@ -37,10 +37,10 @@ npm init @eslint/config
 
 1. vite.config.ts 에 build 관련 설정 추가
 
-```diff
+```typescript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-+ import { resolve } from 'path'   
+import { resolve } from 'path'   
 /**
 node 내장 모듈인 path 를 추가
 이떄 type 추론을 위해 @types/node 모듈을 dev-dependency에 추가   
