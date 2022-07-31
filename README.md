@@ -28,11 +28,16 @@ npm init @eslint/config
 # ❯ yarn
 ```
 
-
+- IntelliJ 사용시 auto fix 설정
+![img.png](docs/idea_eslint_autofix.png)   
 
 ## library 빌드를 위한 vite 설정
 
+
+
 ## 라이브러리로 제공할 함수 구현   
+
+
 
 ## 배포   
 
