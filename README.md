@@ -1,5 +1,11 @@
 # Front Library Skeleton
 
+- [Front Library Skeleton](#front-library-skeleton)
+  - [vite 프로젝트 초기화](#vite-프로젝트-초기화)
+  - [eslint 초기 설정](#eslint-초기-설정)
+  - [vite 번들러를 이용한 라이브러리 빌드](#vite-번들러를-이용한-라이브러리-빌드)
+  - [테스트를 위한 Storybook 모듈 추가](#테스트를-위한-storybook-모듈-추가)
+  - [배포 (TODO)](#배포-todo)
 
 ## vite 프로젝트 초기화
 > https://vitejs.dev/guide/#scaffolding-your-first-vite-project
@@ -257,6 +263,6 @@ yarn storybook
 ![img.png](docs/sb_simplecalculator.png)
 
 
-## 배포   
+## 배포 (TODO)  
 
 
