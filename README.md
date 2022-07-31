@@ -4,7 +4,16 @@
   - [vite 프로젝트 초기화](#vite-프로젝트-초기화)
   - [eslint 초기 설정](#eslint-초기-설정)
   - [vite 번들러를 이용한 라이브러리 빌드](#vite-번들러를-이용한-라이브러리-빌드)
+    - [1. vite.config.ts 에 build 관련 설정 추가](#1-viteconfigts-에-build-관련-설정-추가)
+    - [2. vite.config.ts 에 따른 entry 파일 생성](#2-viteconfigts-에-따른-entry-파일-생성)
+    - [3. 라이브러리로 제공할 함수 구현](#3-라이브러리로-제공할-함수-구현)
+    - [4. js 번들 빌드](#4-js-번들-빌드)
+    - [5. d.ts 파일 자동 생성을 위한 tsconfig 설정](#5-dts-파일-자동-생성을-위한-tsconfig-설정)
+    - [6. 타입 참조 파일 위치 정보 추가](#6-타입-참조-파일-위치-정보-추가)
   - [테스트를 위한 Storybook 모듈 추가](#테스트를-위한-storybook-모듈-추가)
+    - [1. storybook-vite 초기화](#1-storybook-vite-초기화)
+    - [2. View(SimpleCalculator) 테스트를 위한 storybook 컴포넌트 작성](#2-viewsimplecalculator-테스트를-위한-storybook-컴포넌트-작성)
+    - [3. storybook을 실행하여 확인](#3-storybook을-실행하여-확인)
   - [배포 (TODO)](#배포-todo)
 
 ## vite 프로젝트 초기화
@@ -41,7 +50,7 @@ npm init @eslint/config
 ## vite 번들러를 이용한 라이브러리 빌드        
 > https://vitejs.dev/guide/build.html#library-mode   
 
-1. vite.config.ts 에 build 관련 설정 추가
+### 1. vite.config.ts 에 build 관련 설정 추가
 
 ```typescript
 import { defineConfig } from 'vite'
@@ -80,7 +89,7 @@ export default defineConfig({
 
 ```
 
-2. vite.config.ts 에 따른 entry 파일 생성    
+### 2. vite.config.ts 에 따른 entry 파일 생성    
 
 > src/comp/index.ts    
 
@@ -90,7 +99,7 @@ src
     L index.ts
 ```
 
-3. 라이브러리로 제공할 함수 구현
+### 3. 라이브러리로 제공할 함수 구현
 
 ```  
 src
@@ -103,7 +112,7 @@ src
         L SimpleCalculator.tsx
 ```
 
-4. js 번들 빌드    
+### 4. js 번들 빌드    
 
 ```shell
 yarn build 
@@ -119,7 +128,7 @@ dist
 
 > type을 추론할 수 있는 *.d.ts 파일이 생성되지 않음    
 
-5. d.ts 파일 자동 생성을 위한 tsconfig 설정    
+### 5. d.ts 파일 자동 생성을 위한 tsconfig 설정    
 
 > tsconfig.json
 ```diff
@@ -181,7 +190,7 @@ dist
 +   L @types
 ```
 
-6. 타입 참조 파일 위치 정보 추가     
+### 6. 타입 참조 파일 위치 정보 추가     
 
 > package.json   
 ```diff
@@ -200,7 +209,7 @@ dist
 ## 테스트를 위한 Storybook 모듈 추가     
 > https://storybook.js.org/blog/storybook-for-vite/
 
-1. storybook-vite 초기화     
+### 1. storybook-vite 초기화     
 
 ```shell
 npx sb init --builder @storybook/builder-vite
@@ -211,7 +220,7 @@ npx sb init --builder @storybook/builder-vite
 yarn storybook
 ```
 
-2. View(SimpleCalculator) 테스트를 위한 storybook 컴포넌트 작성    
+### 2. View(SimpleCalculator) 테스트를 위한 storybook 컴포넌트 작성    
 
 ```
 comp
@@ -253,7 +262,7 @@ Primary.args = {
 };
 ```
 
-3. storybook을 실행하여 확인   
+### 3. storybook을 실행하여 확인   
 ```shell
 yarn storybook
 ```
