@@ -192,9 +192,69 @@ dist
 
 
 ## 테스트를 위한 Storybook 모듈 추가     
+> https://storybook.js.org/blog/storybook-for-vite/
 
+1. storybook-vite 초기화     
 
+```shell
+npx sb init --builder @storybook/builder-vite
+```
 
+> 스토리북 실행    
+```shell
+yarn storybook
+```
+
+2. View(SimpleCalculator) 테스트를 위한 storybook 컴포넌트 작성    
+
+```
+comp
+ L stories
+    L SimpleCaculator.stoires.tsx
+```
+
+> *.stoires.tsx 로 끝나는 파일을 대상으로 storybook이 파일을 스캔함.     
+> 관련 설정 (.storybook/main.js)   
+```javascript
+module.exports = {
+    "stories": [
+        "../src/**/*.stories.mdx",
+        "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    ],
+    // 중략
+}
+```
+
+> SimpleCaculator.stories.tsx
+```typescript
+import React from 'react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
+import {SimpleCalculator} from "../comp";
+
+// storybook 컴포넌트에 대한 명세
+export default {
+  title: 'View/SimpleCalcuator',
+  component: SimpleCalculator,
+} as ComponentMeta<typeof SimpleCalculator>;
+
+const Template: ComponentStory<typeof SimpleCalculator> = (args) => <SimpleCalculator {...args} />;
+
+export const Primary = Template.bind({});
+// 임의의 props 값 전달
+Primary.args = {
+  x: 10,
+  y: 5
+};
+```
+
+3. storybook을 실행하여 확인   
+```shell
+yarn storybook
+```
+
+> 화면 
+
+![img.png](docs/sb_simplecalculator.png)
 
 
 ## 배포   

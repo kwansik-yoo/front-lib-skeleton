@@ -1,7 +1,7 @@
 import React from 'react';
 import {add, divide, multiply, subtract} from "../util";
 
-interface Props {
+export interface Props {
     x: number;
     y: number;
 }
