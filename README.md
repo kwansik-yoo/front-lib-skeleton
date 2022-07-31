@@ -104,9 +104,95 @@ yarn build
 ```
 
 > dist/* 빌드된 파일 확인     
+```
+dist
+ L dist
+    L index.ex.js
+    L index.umd.js 
+```
+
+> type을 추론할 수 있는 *.d.ts 파일이 생성되지 않음    
+
+5. d.ts 파일 자동 생성을 위한 tsconfig 설정    
+
+> tsconfig.json
+```diff
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+-    "noEmit": true,
++    "noEmit": false,                   // *.d.ts 파일 생성
+    "jsx": "react-jsx",
++    "declaration": true,               // *.d.ts 파일 생성
++    "declarationDir": "dist/@types",   // *.d.ts 파일 생성 위치
++    "emitDeclarationOnly": true        // *.d.ts 파일 생성
+  },
+  "include": [
+-    "src"
++    "src/comp"    // src/comp 하위의 모듈만 컴파일
+  ],
+  "references": [{ "path": "./tsconfig.node.json"}]
+}
+```
+
+> typescript 컴파일을 위해 ttypescript 모듈 추가 및 build 스크립트 수정   
+
+> package.json   
+```diff
+{
+  ... 중략
+  "scripts": {
+    "dev": "vite",
+-    "build": "tsc && vite build",
++    "build": "vite build && ttsc -p ./tsconfig.json ",
+    "preview": "vite preview"
+  }
+  "devDependencies": {
+  ... 중략
++    "ttypescript": "^1.5.13"
+  }
+}
+```
+
+> dist/* 빌드된 파일 확인
+```diff
+dist
+ L dist
+    L index.ex.js
+    L index.umd.js
++   L @types
+```
+
+6. 타입 참조 파일 위치 정보 추가     
+
+> package.json   
+```diff
+{
+  "name": "front-lib-skeleton",
+  "private": true,
+  "version": "0.0.0",
++  "main": "./dist/index.umd.js",           // 이 라이브러리를 사용하는 프로젝트가 umd 프로젝트인 경우 참조할 번들 파일 위치
++  "module": "./dist/index.es.js",          // 이 라이브러리를 사용하는 프로젝트가 es 프로젝트인 경우 참조할 번들 파일 위치
++  "types": "./dist/@types/index.d.ts",     // 이 라이브러리를 사용하는 프로젝트가 ts 프로젝트인 경우 참조할 타입(d.ts) 파일 위치
+  ...중략
+}
+```
 
 
 ## 테스트를 위한 Storybook 모듈 추가     
+
 
 
 
