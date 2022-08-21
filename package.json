@@ -1,5 +1,5 @@
 {
-  "name": "front-lib-skeleton",
+  "name": "@kwansik-yoo/front-lib-skeleton",
   "private": true,
   "version": "0.0.0",
   "main": "./dist/index.umd.js",
