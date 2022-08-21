@@ -12,6 +12,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "publishConfig": {
+    "@kwansik-yoo:registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
